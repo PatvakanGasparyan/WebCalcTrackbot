@@ -1,13 +1,15 @@
 FROM python:3.12-alpine
 
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-COPY requiremens.txt /app/
+COPY requirements.txt .
 
-RUN python -m pip install --upgrade pip
+RUN python -m pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-RUN pip install -r requiremens.txt
+COPY . .
 
-COPY . /app/
-
-CMD [ "python" , "bot,py" , "app.py" ]
+CMD ["python", "bot.py"]

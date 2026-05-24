@@ -43,7 +43,7 @@ def add_log(user_id, username, from_curr, to_curr, amount_in, amount_out):
 # Получить все записи для сайта
 def get_all_logs():
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor(dictionary=True) 
     cursor.execute("SELECT * FROM logs ORDER BY created_at DESC")
     records = cursor.fetchall()
     conn.close()
